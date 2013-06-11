@@ -11,4 +11,3 @@
     8. can search and display by attribute
     9. can exit the program
 
-    def
