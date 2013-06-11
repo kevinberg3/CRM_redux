@@ -44,28 +44,41 @@ class Database
 		end
 
 		def find_contact(find_attribute, find_me)
+			@contact_store = []
 
-				if find_attribute == "last name"
+			if find_attribute == "last name"
 				@contacts_array.each { |contact|
 					if contact.lastname == find_me
-						return contact
-					else
-						puts "No matches"
+						@contact_store << contact
+				# else
+				# 	puts "No matches"
 					end
 				}
-				else
-				  puts "No such input identified."
-				end
+			else
+			  puts "No such input identified."
+			end
+
+			if @contact_store.length > 0
+				return @contact_store
+			else
+					puts "No matches"
+			end
+
 	  end
 
 	  def modify_contact(attribute_to_mod, old_value, new_value)
-	  		find = find_contact(attribute_to_mod, old_value)
+	  		find = find_contact(attribute_to_mod, old_value)[0]
 	  		if attribute_to_mod == "last name"
 	  		find.lastname  = new_value
 	  		end
 	  end
 
-
+	  def delete_contact(attribute, user_to_delete)
+	  		remove_me = find_contact(attribute, user_to_delete)[0]
+	  		if attribute == "last name"
+	  			@contacts_array.delete(remove_me)
+	  	  end
+	  end
 
 # def compare_first_name(firstname)
 
